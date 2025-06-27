@@ -8,6 +8,106 @@
   background: black;
   background-size: cover;
 }
+
+/* Main Container */
+#container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Loading Screen */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.loading-content {
+  text-align: center;
+  color: #fff;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid #00c3ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Controls */
+.controls {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 100;
+}
+
+.control-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(20, 30, 50, 0.8);
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.control-btn:hover {
+  background: rgba(0, 195, 255, 0.3);
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 195, 255, 0.4);
+}
+
+.control-btn.playing {
+  background: rgba(0, 195, 255, 0.5);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Fun mode controls */
+body.fun-mode .control-btn {
+  background: rgba(255, 0, 204, 0.3);
+  animation: funControlGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes funControlGlow {
+  0% { box-shadow: 0 4px 16px rgba(255, 0, 204, 0.4); }
+  100% { box-shadow: 0 6px 24px rgba(255, 0, 204, 0.8); }
+}
+
+body.fun-mode .control-btn:hover {
+  background: rgba(255, 0, 204, 0.6);
+  transform: scale(1.15) rotate(5deg);
+}
+
 .btn-wrapper {
   display: flex;
   flex-direction: row;
@@ -61,4 +161,708 @@
   position: fixed;
   top: 20px;
   right: 5px;
+}
+
+/* Modern Solar System Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  min-height: 100vh;
+  overflow: hidden;
+}
+.solar-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 10;
+  background: rgba(10, 15, 30, 0.7);
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.2);
+  padding: 1.5rem 2rem 1rem 2rem;
+  text-align: center;
+}
+.solar-header h1 {
+  color: #fff;
+  font-size: 2.5rem;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 2px;
+  text-shadow: 0 0 16px #00c3ff, 0 0 32px #fff;
+}
+.solar-intro {
+  color: #b0e0ff;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+.mode-toggle {
+  background: linear-gradient(90deg, #00c3ff 0%, #3a7bd5 100%);
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
+  transition: background 0.3s, transform 0.2s;
+}
+.mode-toggle:hover {
+  background: linear-gradient(90deg, #3a7bd5 0%, #00c3ff 100%);
+  transform: scale(1.05);
+}
+.info-card {
+  width: 320px;
+  height: 140px;
+  min-width: unset;
+  max-width: unset;
+  min-height: unset;
+  max-height: unset;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: absolute;
+  left: 50%;
+  top: 80px;
+  transform: translateX(-50%) scale(0.95);
+  background: rgba(20, 30, 50, 0.95);
+  color: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px 0 #00c3ff55, 0 0 0 2px #00c3ff33;
+  padding: 1.2rem 1.5rem;
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s, transform 0.4s;
+  border: 2.5px solid #00c3ff;
+  box-shadow: 0 4px 32px 0 #00c3ff55, 0 0 24px 4px #00c3ff33;
+  background: rgba(20, 30, 50, 0.98);
+  transition: box-shadow 0.4s, border 0.4s;
+}
+.info-card.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) scale(1);
+}
+@media (max-width: 600px) {
+  .solar-header {
+    padding: 1rem 0.5rem 0.5rem 0.5rem;
+  }
+  .solar-header h1 {
+    font-size: 1.5rem;
+  }
+  .info-card {
+    width: 90vw;
+    height: 120px;
+    min-width: unset;
+    max-width: unset;
+    min-height: unset;
+    max-height: unset;
+    padding: 0.7rem 0.8rem;
+    top: 60px;
+  }
+}
+
+body.fun-mode {
+  background: linear-gradient(135deg, #ff6b35 0%, #f7931e 25%, #ff00cc 50%, #9933ff 75%, #00ff88 100%);
+  animation: funModeGradient 8s ease-in-out infinite;
+}
+
+@keyframes funModeGradient {
+  0%, 100% { background: linear-gradient(135deg, #ff6b35 0%, #f7931e 25%, #ff00cc 50%, #9933ff 75%, #00ff88 100%); }
+  25% { background: linear-gradient(135deg, #00ff88 0%, #ff6b35 25%, #f7931e 50%, #ff00cc 75%, #9933ff 100%); }
+  50% { background: linear-gradient(135deg, #9933ff 0%, #00ff88 25%, #ff6b35 50%, #f7931e 75%, #ff00cc 100%); }
+  75% { background: linear-gradient(135deg, #ff00cc 0%, #9933ff 25%, #00ff88 50%, #ff6b35 75%, #f7931e 100%); }
+}
+
+/* Fun mode header enhancements */
+body.fun-mode .solar-header {
+  background: rgba(255, 0, 204, 0.3);
+  backdrop-filter: blur(15px);
+  border-bottom: 3px solid #ff00cc;
+  animation: funHeaderGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes funHeaderGlow {
+  0% { box-shadow: 0 2px 16px 0 rgba(255, 0, 204, 0.4); }
+  100% { box-shadow: 0 2px 32px 0 rgba(255, 0, 204, 0.8); }
+}
+
+body.fun-mode .solar-header h1 {
+  color: #fff;
+  text-shadow: 0 0 20px #ff00cc, 0 0 40px #ff6b35, 0 0 60px #9933ff;
+  animation: funTitlePulse 3s ease-in-out infinite;
+}
+
+@keyframes funTitlePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Fun mode button enhancements */
+body.fun-mode .mode-toggle {
+  background: linear-gradient(45deg, #ff00cc, #ff6b35, #9933ff, #00ff88);
+  background-size: 300% 300%;
+  animation: funButtonGradient 3s ease infinite;
+  border: 2px solid #fff;
+  box-shadow: 0 4px 20px rgba(255, 0, 204, 0.6);
+}
+
+@keyframes funButtonGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+body.fun-mode .mode-toggle:hover {
+  transform: scale(1.1) rotate(2deg);
+  box-shadow: 0 6px 30px rgba(255, 0, 204, 0.8);
+}
+
+/* Fun mode shooting stars */
+body.fun-mode .shooting-star.colorful {
+  animation: funShoot 1.2s linear forwards;
+  border-radius: 4px;
+}
+
+@keyframes funShoot {
+  0% { opacity: 0.8; transform: translateY(0) scaleY(1) rotate(0deg); }
+  50% { opacity: 1; transform: translateY(200px) scaleY(1.5) rotate(180deg); }
+  100% { opacity: 0; transform: translateY(400px) scaleY(0.5) rotate(360deg); }
+}
+
+/* Fun mode planet sidebar enhancements */
+body.fun-mode .planet-sidebar {
+  background: rgba(255, 0, 204, 0.15);
+  backdrop-filter: blur(20px);
+  border-left-color: #ff00cc;
+  box-shadow: -8px 0 32px rgba(255, 0, 204, 0.4);
+  animation: funSidebarGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes funSidebarGlow {
+  0% { box-shadow: -8px 0 32px rgba(255, 0, 204, 0.4); }
+  100% { box-shadow: -8px 0 48px rgba(255, 0, 204, 0.8), 0 0 20px rgba(255, 107, 53, 0.4); }
+}
+
+body.fun-mode .sidebar-header {
+  border-bottom-color: rgba(255, 0, 204, 0.5);
+  background: linear-gradient(90deg, rgba(255, 0, 204, 0.2), rgba(255, 107, 53, 0.2));
+  animation: funHeaderPulse 2s ease-in-out infinite;
+}
+
+@keyframes funHeaderPulse {
+  0%, 100% { background: linear-gradient(90deg, rgba(255, 0, 204, 0.2), rgba(255, 107, 53, 0.2)); }
+  50% { background: linear-gradient(90deg, rgba(255, 107, 53, 0.2), rgba(153, 51, 255, 0.2)); }
+}
+
+body.fun-mode .sidebar-header h2 {
+  color: #fff;
+  text-shadow: 0 0 15px #ff00cc, 0 0 30px #ff6b35;
+  animation: funTitleGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes funTitleGlow {
+  0% { text-shadow: 0 0 15px #ff00cc, 0 0 30px #ff6b35; }
+  100% { text-shadow: 0 0 25px #ff00cc, 0 0 50px #ff6b35, 0 0 75px #9933ff; }
+}
+
+body.fun-mode .close-btn {
+  border-color: #ff00cc;
+  color: #ff00cc;
+  animation: funClosePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes funClosePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+body.fun-mode .close-btn:hover {
+  background: linear-gradient(45deg, #ff00cc, #ff6b35);
+  color: #fff;
+  transform: scale(1.2) rotate(180deg);
+}
+
+body.fun-mode .detail-section h3 {
+  color: #fff;
+  border-bottom-color: rgba(255, 0, 204, 0.5);
+  text-shadow: 0 0 10px #ff00cc;
+  animation: funSectionGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes funSectionGlow {
+  0% { text-shadow: 0 0 10px #ff00cc; }
+  100% { text-shadow: 0 0 20px #ff00cc, 0 0 30px #ff6b35; }
+}
+
+body.fun-mode .fact-item,
+body.fun-mode #planet-description,
+body.fun-mode .stat-item {
+  background: linear-gradient(135deg, rgba(255, 0, 204, 0.2), rgba(255, 107, 53, 0.1));
+  border-color: rgba(255, 0, 204, 0.5);
+  animation: funCardFloat 4s ease-in-out infinite;
+}
+
+@keyframes funCardFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+body.fun-mode .fact-item:hover,
+body.fun-mode .stat-item:hover {
+  background: linear-gradient(135deg, rgba(255, 0, 204, 0.4), rgba(255, 107, 53, 0.3));
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(255, 0, 204, 0.4);
+}
+
+body.fun-mode .stat-value {
+  color: #fff;
+  text-shadow: 0 0 10px #ff00cc;
+  animation: funStatPulse 2s ease-in-out infinite;
+}
+
+@keyframes funStatPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+body.fun-mode .planet-image-container {
+  background: linear-gradient(135deg, rgba(255, 0, 204, 0.2), rgba(255, 107, 53, 0.1));
+  border-color: rgba(255, 0, 204, 0.5);
+  animation: funImageContainerGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes funImageContainerGlow {
+  0% { box-shadow: 0 0 20px rgba(255, 0, 204, 0.3); }
+  100% { box-shadow: 0 0 40px rgba(255, 0, 204, 0.6), 0 0 20px rgba(255, 107, 53, 0.3); }
+}
+
+body.fun-mode .planet-image-container img {
+  box-shadow: 0 0 30px rgba(255, 0, 204, 0.7);
+  animation: funPlanetRotate 10s linear infinite;
+}
+
+@keyframes funPlanetRotate {
+  0% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.1) rotate(180deg); }
+  100% { transform: scale(1) rotate(360deg); }
+}
+
+/* Planet hover glow (Three.js handles main, but fallback for info card) */
+.info-card.visible {
+  box-shadow: 0 4px 32px 0 #ff00cc88, 0 0 0 2px #ff00cc55;
+  background: rgba(40, 10, 50, 0.98);
+  color: #fff0fa;
+}
+
+/* Sun flare overlay (optional, for extra CSS effect) */
+.sun-flare {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 400px;
+  height: 400px;
+  pointer-events: none;
+  background: radial-gradient(circle, #ffe06655 0%, #fff0 80%);
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  animation: flarePulse 2.5s infinite alternate;
+  opacity: 0.7;
+}
+@keyframes flarePulse {
+  0% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+/* Shooting star animation */
+.shooting-star {
+  position: absolute;
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(180deg, #fff 0%, #00c3ff 100%);
+  opacity: 0.7;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 30;
+  animation: shoot 1.2s linear forwards;
+}
+@keyframes shoot {
+  0% { opacity: 0.7; transform: translateY(0) scaleY(1); }
+  80% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(400px) scaleY(0.5); }
+}
+
+/* Info card polish */
+.info-card h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.4rem;
+  color: #00c3ff;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px #00c3ff88;
+}
+.info-card p {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #b0e0ff;
+}
+
+.animated-pop {
+  animation: popIn 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+@keyframes popIn {
+  0% { opacity: 0; transform: translateX(-50%) scale(0.7); box-shadow: 0 0 0 0 #00c3ff00; }
+  60% { opacity: 1; transform: translateX(-50%) scale(1.1); box-shadow: 0 0 32px 8px #00c3ff55; }
+  100% { opacity: 1; transform: translateX(-50%) scale(1); box-shadow: 0 4px 32px 0 #00c3ff55, 0 0 0 2px #00c3ff33; }
+}
+.hiding {
+  animation: popOut 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+  opacity: 0 !important;
+}
+@keyframes popOut {
+  0% { opacity: 1; transform: translateX(-50%) scale(1); }
+  100% { opacity: 0; transform: translateX(-50%) scale(0.7); }
+}
+
+/* Fact transition animation */
+.fact-transition {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.35s, transform 0.35s;
+}
+.fact-transition.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Planet Sidebar */
+.planet-sidebar {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 400px;
+  height: 100vh;
+  background: rgba(15, 25, 45, 0.98);
+  backdrop-filter: blur(10px);
+  border-left: 3px solid #00c3ff;
+  box-shadow: -8px 0 32px rgba(0, 195, 255, 0.3);
+  z-index: 100;
+  transition: right 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow-y: auto;
+  color: #fff;
+}
+
+.planet-sidebar.show {
+  right: 0;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem 1rem 2rem;
+  border-bottom: 2px solid rgba(0, 195, 255, 0.3);
+  background: rgba(0, 195, 255, 0.1);
+}
+
+.sidebar-header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #00c3ff;
+  text-shadow: 0 0 12px #00c3ff88;
+  letter-spacing: 1px;
+}
+
+.close-btn {
+  background: none;
+  border: 2px solid #00c3ff;
+  color: #00c3ff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-btn:hover {
+  background: #00c3ff;
+  color: #000;
+  transform: scale(1.1);
+}
+
+.sidebar-content {
+  padding: 1.5rem 2rem;
+}
+
+.planet-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.detail-section {
+  margin-bottom: 2rem;
+}
+
+.detail-section h3 {
+  color: #00c3ff;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgba(0, 195, 255, 0.3);
+  text-shadow: 0 0 8px #00c3ff88;
+}
+
+.facts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.fact-item {
+  background: rgba(0, 195, 255, 0.1);
+  border: 1px solid rgba(0, 195, 255, 0.3);
+  border-radius: 12px;
+  padding: 1rem;
+  transition: all 0.3s ease;
+  opacity: 1;
+  transform: translateY(0);
+  margin-bottom: 0.8rem;
+}
+
+.fact-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fact-item:hover {
+  background: rgba(0, 195, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 195, 255, 0.3);
+}
+
+.fact-item p {
+  margin: 0;
+  color: #b0e0ff;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+#planetDescription {
+  color: #b0e0ff;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+  padding: 1rem;
+  background: rgba(0, 195, 255, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 195, 255, 0.3);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.8rem;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  background: rgba(0, 195, 255, 0.1);
+  border: 1px solid rgba(0, 195, 255, 0.3);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+  background: rgba(0, 195, 255, 0.2);
+  transform: translateX(5px);
+}
+
+.stat-value {
+  font-weight: bold;
+  color: #00c3ff;
+  text-shadow: 0 0 8px #00c3ff88;
+}
+
+.stat-label {
+  color: #b0e0ff;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .planet-sidebar {
+    width: 100vw;
+    right: -100vw;
+  }
+  
+  .sidebar-content {
+    padding: 1rem;
+  }
+  
+  .sidebar-header {
+    padding: 1rem;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Fun mode sidebar enhancements */
+body.fun-mode .planet-sidebar {
+  background: rgba(255, 0, 204, 0.1);
+  border-left: 3px solid #ff00cc;
+  box-shadow: -8px 0 32px rgba(255, 0, 204, 0.4);
+  animation: funSidebarGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes funSidebarGlow {
+  0% { box-shadow: -8px 0 32px rgba(255, 0, 204, 0.4); }
+  100% { box-shadow: -8px 0 48px rgba(255, 0, 204, 0.8); }
+}
+
+body.fun-mode .sidebar-header {
+  background: rgba(255, 0, 204, 0.2);
+  border-bottom: 2px solid #ff00cc;
+  animation: funHeaderPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes funHeaderPulse {
+  0% { background: rgba(255, 0, 204, 0.2); }
+  100% { background: rgba(255, 0, 204, 0.4); }
+}
+
+body.fun-mode .sidebar-header h2 {
+  color: #ff00cc;
+  text-shadow: 0 0 16px #ff00cc88;
+  animation: funTitleGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes funTitleGlow {
+  0% { text-shadow: 0 0 16px #ff00cc88; }
+  100% { text-shadow: 0 0 24px #ff00ccaa, 0 0 32px #ff00cc66; }
+}
+
+body.fun-mode .close-btn {
+  border-color: #ff00cc;
+  color: #ff00cc;
+  animation: funClosePulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes funClosePulse {
+  0% { box-shadow: 0 0 8px rgba(255, 0, 204, 0.4); }
+  100% { box-shadow: 0 0 16px rgba(255, 0, 204, 0.8); }
+}
+
+body.fun-mode .close-btn:hover {
+  background: #ff00cc;
+  color: #fff;
+  transform: scale(1.15) rotate(90deg);
+}
+
+body.fun-mode .detail-section h3 {
+  color: #ff00cc;
+  border-bottom-color: #ff00cc;
+  text-shadow: 0 0 12px #ff00cc88;
+  animation: funSectionGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes funSectionGlow {
+  0% { text-shadow: 0 0 12px #ff00cc88; }
+  100% { text-shadow: 0 0 20px #ff00ccaa, 0 0 28px #ff00cc66; }
+}
+
+body.fun-mode .fact-item,
+body.fun-mode .stat-item {
+  background: rgba(255, 0, 204, 0.1);
+  border-color: #ff00cc;
+  animation: funCardFloat 4s ease-in-out infinite;
+}
+
+@keyframes funCardFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+body.fun-mode .fact-item:hover,
+body.fun-mode .stat-item:hover {
+  background: rgba(255, 0, 204, 0.3);
+  box-shadow: 0 6px 20px rgba(255, 0, 204, 0.4);
+  transform: translateY(-5px) scale(1.02);
+}
+
+body.fun-mode .stat-value {
+  color: #ff00cc;
+  text-shadow: 0 0 12px #ff00cc88;
+  animation: funStatPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes funStatPulse {
+  0% { text-shadow: 0 0 12px #ff00cc88; }
+  100% { text-shadow: 0 0 20px #ff00ccaa, 0 0 28px #ff00cc66; }
+}
+
+/* Music Toggle Button */
+.music-toggle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 50;
+  background: linear-gradient(90deg, #00c3ff 0%, #3a7bd5 100%);
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.music-toggle:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px 0 rgba(0,0,0,0.3);
+}
+
+.music-toggle:active {
+  transform: scale(0.95);
+}
+
+/* Fun mode music toggle */
+body.fun-mode .music-toggle {
+  background: linear-gradient(45deg, #ff00cc, #ff6b35, #9933ff, #00ff88);
+  background-size: 300% 300%;
+  animation: funButtonGradient 3s ease infinite;
+  border: 2px solid #fff;
+  box-shadow: 0 4px 20px rgba(255, 0, 204, 0.6);
+}
+
+body.fun-mode .music-toggle:hover {
+  transform: scale(1.1) rotate(2deg);
+  box-shadow: 0 6px 30px rgba(255, 0, 204, 0.8);
+}
+
+#solar-title {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  font-size: 1.5rem;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.08em;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  pointer-events: none;
+  user-select: none;
 }

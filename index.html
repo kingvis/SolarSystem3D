@@ -6,10 +6,60 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
-  <title>3D solar system</title>
+  <title>3D Solar System</title>
 </head>
 
-<body>
+<body class="night-mode">
+  <div id="solar-title">Exploring Solar System with Vissal</div>
+  <!-- Loading Screen -->
+  <div id="loadingScreen" class="loading-screen">
+    <div class="loading-content">
+      <div class="spinner"></div>
+      <p>Loading Solar System...</p>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="controls">
+    <button id="modeToggle" class="control-btn" title="Toggle Mode (M)">
+      🌙
+    </button>
+    <button id="musicToggle" class="control-btn" title="Toggle Music (Space)">
+      🔇
+    </button>
+  </div>
+
+  <!-- Main Container -->
+  <div id="container"></div>
+
+  <!-- Planet Sidebar -->
+  <div id="planetSidebar" class="planet-sidebar">
+    <div class="sidebar-header">
+      <h2 id="planetName">Select a Planet</h2>
+      <button id="closeSidebar" class="close-btn">×</button>
+    </div>
+    <div class="sidebar-content">
+      <div class="planet-details">
+        <div class="detail-section">
+          <h3>Description</h3>
+          <p id="planetDescription"></p>
+        </div>
+        <div class="detail-section">
+          <h3>Quick Facts</h3>
+          <div id="planetFacts" class="facts-list"></div>
+        </div>
+        <div class="detail-section">
+          <h3>Physical Characteristics</h3>
+          <div id="planetStats" class="stats-grid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { PLANETS } from './js/config.js';
+    window.PLANETS = PLANETS;
+  </script>
   <script type="module" src="./js/main.js"></script>
 </body>
 
